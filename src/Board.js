@@ -104,27 +104,11 @@
 
 
     hasAnyRowConflicts: function() {
-      console.log('--------------------');
-      function cases(array){
-        var indices = [];
-        var element = 1;
-        var idx = array.indexOf(element);
-        while (idx != -1) {
-          indices.push(idx);
-          idx = array.indexOf(element, idx + 1);
-          }
-          return indices;
-        }
-
-    var gameBoard = this.rows();
-
-    console.log("the Gameboard for RowConflicts", gameBoard );
-    for(var i = 0 ; i < gameBoard.length ; i++){
-        if(cases(gameBoard[i]).length > 1){
-          console.log('cases(gameBoard[i]) within RowConflicts', cases(gameBoard[i]));
-          return true;
-        }
-    }
+      for(var i = 0 ; i < this.rows().length ; i++){
+       if(this.hasRowConflictAt(i)){
+        return true;
+       }  
+      }
 
       return false;
     },
@@ -143,37 +127,37 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      console.log("this is the value of this",this);
-      function cases(array){
-        var indices = [];
-        var element = 1;
-        var idx = array.indexOf(element);
-        while (idx != -1) {
-          indices.push(idx);
-          idx = array.indexOf(element, idx + 1);
-          }
-          return indices;
-        }
+      // console.log("this is the value of this",this);
+      // function cases(array){
+      //   var indices = [];
+      //   var element = 1;
+      //   var idx = array.indexOf(element);
+      //   while (idx != -1) {
+      //     indices.push(idx);
+      //     idx = array.indexOf(element, idx + 1);
+      //     }
+      //     return indices;
+      //   }
 
 
-        var gameBoard = this.rows();
-        var indicesOfThePieces = [];
-        var testThis = [];
+      //   var gameBoard = this.rows();
+      //   var indicesOfThePieces = [];
+      //   var testThis = [];
 
-        for(var i = 0 ; i < gameBoard.length ; i++){
-          indicesOfThePieces.push(cases(gameBoard[i]));
-          for(var j = 0 ; j < indicesOfThePieces[i].length ; j++ ){
+      //   for(var i = 0 ; i < gameBoard.length ; i++){
+      //     indicesOfThePieces.push(cases(gameBoard[i]));
+      //     for(var j = 0 ; j < indicesOfThePieces[i].length ; j++ ){
 
-            testThis.push(indicesOfThePieces[i][j])
-            }
+      //       testThis.push(indicesOfThePieces[i][j])
+      //       }
 
-        }
+      //   }
 
-          for(var h = 0 ; h < testThis.length ; h++){
-            if(testThis[i] === testThis[i + 1] || testThis[i] === testThis[i - 1]){
-              return true;
-            }
-          }
+      //     for(var h = 0 ; h < testThis.length ; h++){
+      //       if(testThis[i] === testThis[i + 1] || testThis[i] === testThis[i - 1]){
+      //         return true;
+      //       }
+      //     }
 
       return false; // fixme
     },
