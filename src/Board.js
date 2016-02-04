@@ -120,44 +120,74 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      //this.get
+      function cases(array){
+        var indices = [];
+        var element = 1;
+        var idx = array.indexOf(element);
+        while (idx != -1) {
+          indices.push(idx);
+          idx = array.indexOf(element, idx + 1);
+          }
+          return indices;
+        }
+
+        // var gameBoard = this.rows();
+        // var indicesOfThePieces = [];
+        // var testThis = []
+        // var conflictCol =[]
+        // for(var i = 0 ; i < gameBoard.length ; i++){
+        //   indicesOfThePieces.push(cases(gameBoard[i]))
+        // }
+        //indicesOfThePieces === [[0], [], [0], []];
+        // for(var j = 0 ; j < indicesOfThePieces.length ; j++){
+        //   for(var h = 0 ; h < indicesOfThePieces[j].length ; h++){
+        //     testThis.push(indicesOfThePieces[j][h]);
+        //   }
+        // }
+        // //testThis === [0, 0]
+        // for(var k = 0 ; k < testThis.length ; k++){
+        //   testThis = testThis.sort();
+        //   if(testThis[k] === testThis[k + 1]){
+        //     conflictCol.push(testThis[k]);
+
+        //   }
+        // }
+        // //conflictCol === [0]
+
+        // for(var L = 0 ; L < conflictCol.length ; L++){
+        //   if(colIndex === conflictCol[L]){
+        //     return true;
+        //   }
+        // }
+        var gameBoard = this.rows();
+        var indicesOfThePieces = [];
+        var testThis = [];
+        //gameBoard === [[1, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0], [0, 0, 0, 0]]
+        for(var i = 0 ; i < gameBoard.length ; i++){
+          indicesOfThePieces.push(cases(gameBoard[i]));
+          //indicesOfThePieces === [[0], [], [0], []]
+          for(var j = 0 ; j < indicesOfThePieces[i].length ; j++ ){
+            testThis.push(indicesOfThePieces[i][j])
+            //testThis === [0, 0]
+            }
+
+        }
+          testThis = testThis.sort()
+          for(var k = 0 ; k < testThis.length ; k++){
+            //check to see if the input column has items in it
+            if(testThis[k] === colIndex){
+              //if the detected value is repeated, return a boolean.
+              if(testThis[k] === this[k + 1] || testThis[k] === testThis[k - 1])
+              return true;
+            }
+          }
 
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      // console.log("this is the value of this",this);
-      // function cases(array){
-      //   var indices = [];
-      //   var element = 1;
-      //   var idx = array.indexOf(element);
-      //   while (idx != -1) {
-      //     indices.push(idx);
-      //     idx = array.indexOf(element, idx + 1);
-      //     }
-      //     return indices;
-      //   }
-
-
-      //   var gameBoard = this.rows();
-      //   var indicesOfThePieces = [];
-      //   var testThis = [];
-
-      //   for(var i = 0 ; i < gameBoard.length ; i++){
-      //     indicesOfThePieces.push(cases(gameBoard[i]));
-      //     for(var j = 0 ; j < indicesOfThePieces[i].length ; j++ ){
-
-      //       testThis.push(indicesOfThePieces[i][j])
-      //       }
-
-      //   }
-
-      //     for(var h = 0 ; h < testThis.length ; h++){
-      //       if(testThis[i] === testThis[i + 1] || testThis[i] === testThis[i - 1]){
-      //         return true;
-      //       }
-      //     }
+      
 
       return false; // fixme
     },
