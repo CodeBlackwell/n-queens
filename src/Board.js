@@ -8,9 +8,9 @@
 
     initialize: function (params) {
       if (_.isUndefined(params) || _.isNull(params)) {
-        console.log('Good guess! But to use the Board() constructor, you must pass it an argument in one of the following formats:');
-        console.log('\t1. An object. To create an empty board of size n:\n\t\t{n: %c<num>%c} - Where %c<num> %cis the dimension of the (empty) board you wish to instantiate\n\t\t%cEXAMPLE: var board = new Board({n:5})', 'color: blue;', 'color: black;','color: blue;', 'color: black;', 'color: grey;');
-        console.log('\t2. An array of arrays (a matrix). To create a populated board of size n:\n\t\t[ [%c<val>%c,%c<val>%c,%c<val>%c...], [%c<val>%c,%c<val>%c,%c<val>%c...], [%c<val>%c,%c<val>%c,%c<val>%c...] ] - Where each %c<val>%c is whatever value you want at that location on the board\n\t\t%cEXAMPLE: var board = new Board([[1,0,0],[0,1,0],[0,0,1]])', 'color: blue;', 'color: black;','color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: grey;');
+        //console.log('Good guess! But to use the Board() constructor, you must pass it an argument in one of the following formats:');
+        //console.log('\t1. An object. To create an empty board of size n:\n\t\t{n: %c<num>%c} - Where %c<num> %cis the dimension of the (empty) board you wish to instantiate\n\t\t%cEXAMPLE: var board = new Board({n:5})', 'color: blue;', 'color: black;','color: blue;', 'color: black;', 'color: grey;');
+        //console.log('\t2. An array of arrays (a matrix). To create a populated board of size n:\n\t\t[ [%c<val>%c,%c<val>%c,%c<val>%c...], [%c<val>%c,%c<val>%c,%c<val>%c...], [%c<val>%c,%c<val>%c,%c<val>%c...] ] - Where each %c<val>%c is whatever value you want at that location on the board\n\t\t%cEXAMPLE: var board = new Board([[1,0,0],[0,1,0],[0,0,1]])', 'color: blue;', 'color: black;','color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: blue;', 'color: black;', 'color: grey;');
       } else if (params.hasOwnProperty('n')) {
         this.set(makeEmptyMatrix(this.get('n')));
       } else {
@@ -78,13 +78,47 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+
+
+
+
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      function cases(array){
+        var indices = [];
+        var element = 1;
+        var idx = array.indexOf(element);
+        while (idx != -1) {
+          indices.push(idx);
+          idx = array.indexOf(element, idx + 1);
+          }
+          return indices;
+        }
+        var gameBoard = this.rows();
+        
     },
 
-    // test if any rows on this board contain conflicts
+
     hasAnyRowConflicts: function() {
-      return false; // fixme
+
+      function cases(array){
+        var indices = [];
+        var element = 1;
+        var idx = array.indexOf(element);
+        while (idx != -1) {
+          indices.push(idx);
+          idx = array.indexOf(element, idx + 1);
+          }
+          return indices;
+        }
+
+    var gameBoard = this.rows();
+    for(var i = 0 ; i < gameBoard.length ; i++){
+        if(cases(gameBoard[i]).length > 1){
+          return true;
+        }
+    }
+
+      return false;
     },
 
 
