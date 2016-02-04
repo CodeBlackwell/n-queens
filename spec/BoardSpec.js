@@ -39,7 +39,8 @@ describe("Board", function() {
     ]);
   });
 
-  xdescribe("Board with col conflicts", function() {
+  describe("Board with col conflicts", function() {
+    console.log("board with column conflicts")
     verifyConflictTypes(['col', 'rooks', 'queens'], [
       [1, 0, 0, 0],
       [0, 0, 0, 0],
@@ -48,7 +49,7 @@ describe("Board", function() {
     ]);
   });
 
-  xdescribe("Board with easy major diagonal conflict", function() {
+  describe("Board with easy major diagonal conflict", function() {
     verifyConflictTypes(['majorDiagonal', 'queens'], [
       [0, 1, 0, 0],
       [0, 0, 1, 0],
@@ -57,7 +58,7 @@ describe("Board", function() {
     ]);
   });
 
-  xdescribe("Board with hard major diagonal conflict", function() {
+  describe("Board with hard major diagonal conflict", function() {
     verifyConflictTypes(['majorDiagonal', 'queens'], [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
@@ -66,7 +67,7 @@ describe("Board", function() {
     ]);
   });
 
-  xdescribe("Board with easy minor diagonal conflict", function() {
+  describe("Board with easy minor diagonal conflict", function() {
     verifyConflictTypes(['minorDiagonal', 'queens'], [
       [0, 0, 1, 0],
       [0, 1, 0, 0],
@@ -75,7 +76,7 @@ describe("Board", function() {
     ]);
   });
 
-  xdescribe("Board with hard minor diagonal conflict", function() {
+  describe("Board with hard minor diagonal conflict", function() {
     verifyConflictTypes(['minorDiagonal', 'queens'], [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
