@@ -120,53 +120,58 @@
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
-    hasColConflictAt: function(colIndex) {
-      function cases(array){
-        var indices = [];
-        var element = 1;
-        var idx = array.indexOf(element);
-        while (idx != -1) {
-          indices.push(idx);
-          idx = array.indexOf(element, idx + 1);
-          }
-          return indices;
-        }
-        colIndex = colIndex || 0;
-  
-        var gameBoard = this.rows();
-        var indicesOfThePieces = [];
-        var testThis = [];
-        //gameBoard === [[1, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0], [0, 0, 0, 0]]
-        for(var i = 0 ; i < gameBoard.length ; i++){
-          indicesOfThePieces.push(cases(gameBoard[i]));
-          //indicesOfThePieces === [[0], [], [0], []]
-          for(var j = 0 ; j < indicesOfThePieces[i].length ; j++ ){
-            testThis.push(indicesOfThePieces[i][j])
-            //testThis === [0, 0]
-            }
 
-        }
-          testThis = testThis.sort()
-          for(var k = 0 ; k < testThis.length ; k++){
-            //check to see if the input column has items in it
-            if(testThis[k] === colIndex){
-              //if the detected value is repeated, return a boolean.
-              if(testThis[k] === this[k + 1] || testThis[k] === testThis[k - 1]){
 
-              return true;
-              }
-            }
-          }
+    //gameBoard = [1, 0, 0, 0],
+    //            [0, 0, 0, 0],
+    //            [1, 0, 0, 0],
+    //            [0, 0, 0, 0]
+    hasColConflictAt: function(columnIndex) {
+    
+     console.log('value of columnIndex', columnIndex)
+
+
+     function getColumn(matrix, col){
+      var column = [];
+      for(var i = 0 ; i < matrix.length ; i++){
+        column.push(matrix[i][col]);
+      }
+      return column;
+      }
+
+     function theSum(array){
+      var total = 0;
+      for(var i = 0 ; i < array.length ; i++){
+        total += array[i];
+      }
+      return total;
+     }
+
+
+
+      var gameBoard = this.rows();
+      var results = getColumn(gameBoard, columnIndex);
+      //if the sum of the elements of the results array is > 1, return true
+      if(theSum(results) > 1){
+        return true
+      }
+    
+      
+
+      
+
+
 
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-     
-        if(this.hasColConflictAt()){
+        for(var i = 0 ; i < this.rows().length ; i++){
+        if(this.hasColConflictAt(i)){
           return true;
       }
+    }
 
       return false; // fixme
     },
