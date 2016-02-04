@@ -82,20 +82,25 @@
 
 
 
-    // hasRowConflictAt: function(rowIndex) {
-    //   function cases(array){
-    //     var indices = [];
-    //     var element = 1;
-    //     var idx = array.indexOf(element);
-    //     while (idx != -1) {
-    //       indices.push(idx);
-    //       idx = array.indexOf(element, idx + 1);
-    //       }
-    //       return indices;
-    //     }
-    //     var gameBoard = this.rows();
-    //
-    // },
+    hasRowConflictAt: function(rowIndex) {
+      function cases(array){
+        var indices = [];
+        var element = 1;
+        var idx = array.indexOf(element);
+        while (idx != -1) {
+          indices.push(idx);
+          idx = array.indexOf(element, idx + 1);
+          }
+          return indices;
+        }
+        
+        var gameBoard = this.rows();
+        if(cases(gameBoard[rowIndex]).length > 1){
+          return true;
+        }
+        return false;
+    
+    },
 
 
     hasAnyRowConflicts: function() {
