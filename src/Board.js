@@ -130,7 +130,7 @@
           }
           return indices;
         }
-
+        colIndex = colIndex || 0;
         // var gameBoard = this.rows();
         // var indicesOfThePieces = [];
         // var testThis = []
@@ -177,8 +177,10 @@
             //check to see if the input column has items in it
             if(testThis[k] === colIndex){
               //if the detected value is repeated, return a boolean.
-              if(testThis[k] === this[k + 1] || testThis[k] === testThis[k - 1])
+              if(testThis[k] === this[k + 1] || testThis[k] === testThis[k - 1]){
+
               return true;
+              }
             }
           }
 
@@ -187,7 +189,10 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      
+     
+        if(this.hasColConflictAt()){
+          return true;
+      }
 
       return false; // fixme
     },
