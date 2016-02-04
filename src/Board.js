@@ -80,25 +80,26 @@
     // test if a specific row on this board contains a conflict
 
 
-
+    // gameBoard = [[0, 0, 0, 0],
+    //              [1, 1, 0, 0],
+    //              [0, 0, 0, 0],
+    //              [0, 0, 0, 0]]
 
     hasRowConflictAt: function(rowIndex) {
-      function cases(array){
-        var indices = [];
-        var element = 1;
-        var idx = array.indexOf(element);
-        while (idx != -1) {
-          indices.push(idx);
-          idx = array.indexOf(element, idx + 1);
+     var gameBoard = this.rows();
+     //loop through the rows of the gameBoard
+     for(var i = 0 ; i < gameBoard.length ; i++){
+      var total = 0;
+      for(var j = 0; j < gameBoard[i].length ; j++){
+        if(gameBoard[i][j] === 1){
+          total++;
+          if(total > 1){
+            return true;
           }
-          return indices;
         }
-        
-        var gameBoard = this.rows();
-        if(cases(gameBoard[rowIndex]).length > 1){
-          return true;
-        }
-        return false;
+      } 
+     }
+     return false;
     
     },
 
@@ -131,34 +132,7 @@
           return indices;
         }
         colIndex = colIndex || 0;
-        // var gameBoard = this.rows();
-        // var indicesOfThePieces = [];
-        // var testThis = []
-        // var conflictCol =[]
-        // for(var i = 0 ; i < gameBoard.length ; i++){
-        //   indicesOfThePieces.push(cases(gameBoard[i]))
-        // }
-        //indicesOfThePieces === [[0], [], [0], []];
-        // for(var j = 0 ; j < indicesOfThePieces.length ; j++){
-        //   for(var h = 0 ; h < indicesOfThePieces[j].length ; h++){
-        //     testThis.push(indicesOfThePieces[j][h]);
-        //   }
-        // }
-        // //testThis === [0, 0]
-        // for(var k = 0 ; k < testThis.length ; k++){
-        //   testThis = testThis.sort();
-        //   if(testThis[k] === testThis[k + 1]){
-        //     conflictCol.push(testThis[k]);
-
-        //   }
-        // }
-        // //conflictCol === [0]
-
-        // for(var L = 0 ; L < conflictCol.length ; L++){
-        //   if(colIndex === conflictCol[L]){
-        //     return true;
-        //   }
-        // }
+  
         var gameBoard = this.rows();
         var indicesOfThePieces = [];
         var testThis = [];
