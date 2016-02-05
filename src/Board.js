@@ -182,13 +182,35 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+
+    // gameBoard = [];
+    hasMajorDiagonalConflictAt: function(columnIndexAtFirstRow) {
+      var gameBoard = this.rows();
+
+        var rowNum = 0;
+        var total = 0;
+      for(i = columnIndexAtFirstRow; i < gameBoard[0].length ; i++){
+        if(gameBoard[rowNum][i]){
+          total++;
+        }
+        rowNum++;
+        if(total > 1){
+          return true;
+        }
+      }
+
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var gameBoard = this.rows();
+      for(var i = 0 ; i < gameBoard.length ; i++){
+        if( this.hasMajorDiagonalConflictAt(i) ){
+          return true;
+        }
+      }
+      return false;
     },
 
 
