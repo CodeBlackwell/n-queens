@@ -19,7 +19,7 @@ describe("Board", function() {
     });
   };
 
-  describe("Empty board", function() {
+  xdescribe("Empty board", function() {
     console.log('Empty Board test');
     verifyConflictTypes([''], [
       [0, 0, 0, 0],
@@ -29,7 +29,7 @@ describe("Board", function() {
     ]);
   });
 
-  describe("Board with row conflicts", function() {
+  xdescribe("Board with row conflicts", function() {
     console.log("Board with row conflicts test")
     verifyConflictTypes(['row', 'rooks', 'queens'], [
       [0, 0, 0, 0],
@@ -39,7 +39,7 @@ describe("Board", function() {
     ]);
   });
 
-  describe("Board with col conflicts", function() {
+  xdescribe("Board with col conflicts", function() {
     console.log("board with column conflicts")
     verifyConflictTypes(['col', 'rooks', 'queens'], [
       [1, 0, 0, 0],
@@ -49,7 +49,7 @@ describe("Board", function() {
     ]);
   });
 
-  describe("Board with easy major diagonal conflict", function() {
+  xdescribe("Board with easy major diagonal conflict", function() {
     verifyConflictTypes(['majorDiagonal', 'queens'], [
       [0, 1, 0, 0],
       [0, 0, 1, 0],
@@ -59,6 +59,7 @@ describe("Board", function() {
   });
 
   describe("Board with hard major diagonal conflict", function() {
+    console.log("Beginning hard major Diag con test", "^^^^^^^^^^^^^^^^^^^")
     verifyConflictTypes(['majorDiagonal', 'queens'], [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
@@ -67,7 +68,7 @@ describe("Board", function() {
     ]);
   });
 
-  describe("Board with easy minor diagonal conflict", function() {
+  xdescribe("Board with easy minor diagonal conflict", function() {
     verifyConflictTypes(['minorDiagonal', 'queens'], [
       [0, 0, 1, 0],
       [0, 1, 0, 0],
@@ -76,7 +77,7 @@ describe("Board", function() {
     ]);
   });
 
-  describe("Board with hard minor diagonal conflict", function() {
+  xdescribe("Board with hard minor diagonal conflict", function() {
     verifyConflictTypes(['minorDiagonal', 'queens'], [
       [0, 0, 0, 0],
       [0, 0, 0, 0],

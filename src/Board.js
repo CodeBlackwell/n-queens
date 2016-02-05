@@ -127,8 +127,7 @@
     //            [1, 0, 0, 0],
     //            [0, 0, 0, 0]
     hasColConflictAt: function(columnIndex) {
-    
-     console.log('value of columnIndex', columnIndex)
+
 
 
      function getColumn(matrix, col){
@@ -186,27 +185,53 @@
     // gameBoard = [];
     hasMajorDiagonalConflictAt: function(columnIndexAtFirstRow) {
       var gameBoard = this.rows();
-
+        var sizeOfGameBoard = this.attributes.n
         var rowNum = 0;
         var total = 0;
-      for(i = columnIndexAtFirstRow; i < gameBoard[0].length ; i++){
-        if(gameBoard[rowNum][i]){
+      for(i = columnIndexAtFirstRow; i < sizeOfGameBoard; i++){
+        console.log("value of gameBoard[i] in MAJDIAGCONAT", gameBoard[i]);
+       if(gameBoard[i][columnIndexAtFirstRow + i]){
           total++;
+        console.log("value of gameBoard[i][columnIndexAtFirstRow]", gameBoard[i][columnIndexAtFirstRow + i], "the total of current column", total, 'columnIndexAtFirstRow', columnIndexAtFirstRow);
+        
         }
-        rowNum++;
+        
+        
         if(total > 1){
           return true;
         }
       }
 
-      return false; // fixme
+         
+      return false; 
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var gameBoard = this.rows();
-      for(var i = 0 ; i < gameBoard.length ; i++){
+      //console.log('the gameBoard within hasAnyMajorDiagonalConflicts', this.rows());
+      //create a gameBoard to work with
+      var gameBoard = this.attributes;
+      console.log("value of this.attributes", gameBoard)
+      console.log("value of this everywhere", this)
+      // var size = gameBoard.length;     
+      // //start at -n for the column index
+
+      // //call hasMajorDiagonalConflictAt on all columns, if any return true, return true.
+      // console.log( 'the gameBoard within hasAnyMajorDiagonalConflicts', this.rows())
+      
+      //   for(var i = -size; i <  size; i++){
+      //     if(this.hasMajorDiagonalConflictAt(i)){
+      //       return true;
+      //     }
+      //   }
+
+      var size = gameBoard.length;
+
+
+      for(var i = -size ; i < gameBoard.length ; i++){
+          //console.log("value of this.hasMajorDiagonalConflictAt(i)",this.hasMajorDiagonalConflictAt(i));
         if( this.hasMajorDiagonalConflictAt(i) ){
+
           return true;
         }
       }
